@@ -1,10 +1,22 @@
 // 모듈 가져오기
 import s from './App.module.css';
+import { useState } from 'react';
 import { data } from './data';
 //컴포넌트 정의
 const { fruits } = data;
 
 export default function App() {
+  const [inputs, setInputs] = useState([]);
+
+  const addInputFruit = () => {
+    const newFruit = {
+      id: Date.now(),
+      name: '',
+      price: '',
+    };
+    setInputs([...inputs, newFruit]);
+  };
+
   return (
     <>
       <main className={s.mainContainer}>
@@ -38,8 +50,26 @@ export default function App() {
                     <button type='button'>🗑️</button>
                   </div>
                 ))}
+                {inputs.map((input, idx) => (
+                  <div key={idx} className={s.inputWrapper}>
+                    <span className={s.inputWrapperItem}>{input.name}</span>
+                    <span className={s.inputWrapperItem}>{input.price}</span>
+                    <input
+                      type='number'
+                      className={s.inputWrapperInput}
+                      id={`quantityInput_${input.id}`}
+                      name={`quantityInput_${input.id}`}
+                      min={0}
+                      step={1}
+                    />
+                    <button type='button'>📝</button>
+                    <button type='button'>🗑️</button>
+                  </div>
+                ))}
                 <div className={s.wrapper}>
-                  <button type='button'>🍏 과일 추가</button>
+                  <button type='button' onClick={addInputFruit}>
+                    🍏 과일 추가
+                  </button>
                   <span>{'🧺 총액 : ' + 1234}</span>
                 </div>
               </div>
