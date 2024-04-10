@@ -11,20 +11,21 @@ export default function FruitItem({ fruit, onUpdate, onRegister, onDelete }) {
   };
 
   const checkRegister = (e) => {
-    if (!fruit.name.trim() || !fruit.price.trim()) {
+    if (!fruit.name.trim() || fruit.price === '') {
       alert('추가할 과일 정보를 입력하세요!');
       return;
     }
-    // console.dir(fruit);
     if (typeof fruit.name !== 'string') {
       alert('과일 이름은 문자여야 합니다.');
       return;
     }
 
-    //   if (typeof fruit.price !== 'number') {
-    //     alert('과일 가격은 숫자여야 합니다.');
-    //     return;
-    //   }
+    // if (typeof fruit.price !== 'number') {
+    //   alert('과일 가격은 숫자여야 합니다.');
+    //   return;
+    // }
+    console.dir(fruit);
+
     onRegister(id, fruit);
   };
 
@@ -45,7 +46,7 @@ export default function FruitItem({ fruit, onUpdate, onRegister, onDelete }) {
             placeholder='상품 이름'
           />
           <input
-            type='text'
+            type='number'
             className={s.inputWrapperItem}
             name='price'
             value={price}
