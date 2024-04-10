@@ -3,7 +3,8 @@ import s from './App.module.css';
 import { useState } from 'react';
 import { data } from './data';
 import FruitItem from './components/FruitsItem';
-import AddFruitItem from './components/AddFruitItem';
+// import AddFruitItem from './components/AddFruitItem';
+
 //컴포넌트 정의
 const { fruits } = data;
 
@@ -35,22 +36,23 @@ export default function App() {
                     <div></div>
                   </div>
                 </div>
-                {fruits.map((f) => (
+                {fruits.concat(inputs).map((item, idx) => (
+                  <FruitItem
+                    key={item.id || idx}
+                    id={item.id}
+                    name={item.name}
+                    item={item.price}
+                    idEditable={!item.id}
+                  ></FruitItem>
+                ))}
+                {/* {fruits.map((f) => (
                   <FruitItem
                     key={f.id}
                     if={f.id}
                     name={f.name}
                     price={f.price}
                   ></FruitItem>
-                ))}
-                {inputs.map((i) => (
-                  <AddFruitItem
-                    key={i.id}
-                    if={i.id}
-                    name={i.name}
-                    price={i.price}
-                  ></AddFruitItem>
-                ))}
+                ))} */}
                 <div className={s.wrapper}>
                   <button type='button' onClick={addInputFruit}>
                     🍏 과일 추가
