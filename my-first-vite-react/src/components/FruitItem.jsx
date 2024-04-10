@@ -68,7 +68,9 @@ export default function FruitItem({ fruit, onUpdate, onRegister, onDelete }) {
             onChange={handleChange}
           />
           <button type='button'>📝</button>
-          <button type='button'>🗑️</button>
+          <button type='button' onClick={() => onDelete(id)}>
+            🗑️
+          </button>
         </>
       )}
     </div>
