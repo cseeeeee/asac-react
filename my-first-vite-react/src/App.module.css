@@ -1,3 +1,12 @@
+body,
+html {
+  height: 100%;
+  margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .wrapper {
   width: 100%;
   display: inline-flex;
@@ -22,33 +31,6 @@
   padding: 0.25rem;
   width: 5rem;
   flex: 1 0 auto;
-}
-
-.inputWrapper {
-  padding-top: 0.5rem;
-  display: flex;
-  gap: 0.5rem;
-  justify-self: center;
-}
-
-.inputWrapperItem {
-  display: inline-flex;
-  border-radius: 4px;
-  height: 2rem;
-  margin: 0.5rem;
-  padding: 0.25rem;
-  width: 5rem;
-  flex: 1 0 auto;
-}
-
-.inputWrapperInput {
-  border-radius: 4px;
-  height: 2rem;
-  margin: 0.5rem;
-  padding: 0.25rem;
-  width: 5rem;
-  flex: 1 0 auto;
-  background-color: var(--primary);
 }
 
 .buttonWrapper {
@@ -78,6 +60,8 @@
   justify-content: center;
   align-items: center;
   height: 100vh;
+  width: 100%;
+  margin-right: 680px;
   background-color: var(--bg-color);
 }
 
