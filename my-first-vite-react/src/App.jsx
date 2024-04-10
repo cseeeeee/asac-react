@@ -3,22 +3,39 @@ import s from './App.module.css';
 import { useState } from 'react';
 import { data } from './data';
 import FruitItem from './components/FruitItem';
+import { v4 as uuidv4 } from 'uuid';
 
 export default function App() {
   const [fruits, setFruits] = useState(data.fruits);
 
   const addFruit = () => {
     const newFruit = {
-      // id: Date.now(),
+      id: uuidv4(),
       name: '',
       price: '',
       quantity: 0,
+      isNew: true,
     };
     setFruits([...fruits, newFruit]);
   };
 
   const updateFruit = (id, updateFruit) => {
     setFruits(fruits.map((fruit) => (fruit.id === id ? updateFruit : fruit)));
+  };
+
+  const deleteFruit = (id) => {
+    setFruits(fruits.filter((fruit) => fruit.id !== id));
+  };
+
+  const registerFruit = (id, updatedFruit) => {
+    setFruits(
+      fruits.map((fruit) => {
+        if (fruit.id === id) {
+          return { ...updatedFruit, isNew: false };
+        }
+        return fruit;
+      })
+    );
   };
 
   return (
@@ -38,11 +55,13 @@ export default function App() {
                     <div></div>
                   </div>
                 </div>
-                {fruits.map((fruit, idx) => (
+                {fruits.map((fruit) => (
                   <FruitItem
-                    key={idx + fruit.name}
+                    key={fruit.id}
                     fruit={fruit}
                     onUpdate={updateFruit}
+                    onRegister={registerFruit}
+                    onDelete={deleteFruit}
                   ></FruitItem>
                 ))}
                 <div className={s.wrapper}>
