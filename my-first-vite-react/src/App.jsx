@@ -2,23 +2,25 @@
 import s from './App.module.css';
 import { useState } from 'react';
 import { data } from './data';
-import FruitItem from './components/FruitsItem';
-// import AddFruitItem from './components/AddFruitItem';
-
-//컴포넌트 정의
-const { fruits } = data;
+import FruitItem from './components/FruitItem';
 
 export default function App() {
-  const [inputs, setInputs] = useState([]);
+  const [fruits, setFruits] = useState(data.fruits);
 
-  const addInputFruit = () => {
+  const addFruit = () => {
     const newFruit = {
-      id: Date.now(),
+      // id: Date.now(),
       name: '',
       price: '',
+      quantity: 0,
     };
-    setInputs([...inputs, newFruit]);
+    setFruits([...fruits, newFruit]);
   };
+
+  const updateFruit = (id, updateFruit) => {
+    setFruits(fruits.map((fruit) => (fruits.id === id ? updateFruit : fruit)));
+  };
+
   return (
     <>
       <main className={s.mainContainer}>
@@ -36,25 +38,23 @@ export default function App() {
                     <div></div>
                   </div>
                 </div>
-                {fruits.concat(inputs).map((item, idx) => (
+                {fruits.map((fruit, idx) => (
                   <FruitItem
-                    key={item.id || idx}
-                    id={item.id}
-                    name={item.name}
-                    item={item.price}
-                    idEditable={!item.id}
+                    key={idx + fruit.name}
+                    fruit={fruit}
+                    onUpdate={updateFruit}
                   ></FruitItem>
                 ))}
                 {/* {fruits.map((f) => (
                   <FruitItem
                     key={f.id}
-                    if={f.id}
+                    id={f.id}
                     name={f.name}
                     price={f.price}
                   ></FruitItem>
                 ))} */}
                 <div className={s.wrapper}>
-                  <button type='button' onClick={addInputFruit}>
+                  <button type='button' onClick={addFruit}>
                     🍏 과일 추가
                   </button>
                   <span>{'🧺 총액 : ' + 1234}</span>
