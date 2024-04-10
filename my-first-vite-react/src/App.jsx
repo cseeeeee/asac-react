@@ -2,6 +2,7 @@
 import s from './App.module.css';
 import { useState } from 'react';
 import { data } from './data';
+import FruitItem from './compontents/FruitsItem';
 //컴포넌트 정의
 const { fruits } = data;
 
@@ -34,21 +35,13 @@ export default function App() {
                     <div></div>
                   </div>
                 </div>
-                {fruits.map((f, i) => (
-                  <div key={i + f.id} className={s.inputWrapper}>
-                    <span className={s.inputWrapperItem}>{f.name}</span>
-                    <span className={s.inputWrapperItem}>{f.price}</span>
-                    <input
-                      type='number'
-                      className={s.inputWrapperInput}
-                      id={`quantityInput_${f.id}`}
-                      name={`quantityInput_${f.id}`}
-                      min={0}
-                      step={1}
-                    />
-                    <button type='button'>📝</button>
-                    <button type='button'>🗑️</button>
-                  </div>
+                {fruits.map((f) => (
+                  <FruitItem
+                    key={f.id}
+                    if={f.id}
+                    name={f.name}
+                    price={f.price}
+                  ></FruitItem>
                 ))}
                 {inputs.map((input, idx) => (
                   <div key={idx} className={s.inputWrapper}>
