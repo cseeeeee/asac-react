@@ -18,7 +18,7 @@ export default function App() {
   };
 
   const updateFruit = (id, updateFruit) => {
-    setFruits(fruits.map((fruit) => (fruits.id === id ? updateFruit : fruit)));
+    setFruits(fruits.map((fruit) => (fruit.id === id ? updateFruit : fruit)));
   };
 
   return (
@@ -45,14 +45,6 @@ export default function App() {
                     onUpdate={updateFruit}
                   ></FruitItem>
                 ))}
-                {/* {fruits.map((f) => (
-                  <FruitItem
-                    key={f.id}
-                    id={f.id}
-                    name={f.name}
-                    price={f.price}
-                  ></FruitItem>
-                ))} */}
                 <div className={s.wrapper}>
                   <button type='button' onClick={addFruit}>
                     🍏 과일 추가
