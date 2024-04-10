@@ -7,7 +7,15 @@ export default function FruitItem({ fruit, onUpdate, onRegister, onDelete }) {
 
   const handleChange = (e) => {
     onUpdate(id, { ...fruit, [e.target.name]: e.target.value });
-    console.log('create fruits id', id);
+    // console.log('create fruits id', id);
+  };
+
+  const checkRegister = () => {
+    if (!fruit.name.trim() || !fruit.price.trim()) {
+      alert('추가할 과일 정보를 입력하세요!');
+      return;
+    }
+    onRegister(id, fruit);
   };
 
   return (
@@ -38,10 +46,7 @@ export default function FruitItem({ fruit, onUpdate, onRegister, onDelete }) {
             placeholder='수량'
             min={1}
           />
-          <button
-            type='button'
-            onClick={() => onRegister(id, { ...fruit, isNew: false })}
-          >
+          <button type='button' onClick={checkRegister}>
             ✔️
           </button>
           <button type='button' onClick={() => onDelete(id)}>
