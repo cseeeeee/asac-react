@@ -2,7 +2,8 @@
 import s from './App.module.css';
 import { useState } from 'react';
 import { data } from './data';
-import FruitItem from './compontents/FruitsItem';
+import FruitItem from './components/FruitsItem';
+import AddFruitItem from './components/AddFruitItem';
 //컴포넌트 정의
 const { fruits } = data;
 
@@ -17,7 +18,6 @@ export default function App() {
     };
     setInputs([...inputs, newFruit]);
   };
-
   return (
     <>
       <main className={s.mainContainer}>
@@ -43,21 +43,13 @@ export default function App() {
                     price={f.price}
                   ></FruitItem>
                 ))}
-                {inputs.map((input, idx) => (
-                  <div key={idx} className={s.inputWrapper}>
-                    <span className={s.inputWrapperItem}>{input.name}</span>
-                    <span className={s.inputWrapperItem}>{input.price}</span>
-                    <input
-                      type='number'
-                      className={s.inputWrapperInput}
-                      id={`quantityInput_${input.id}`}
-                      name={`quantityInput_${input.id}`}
-                      min={0}
-                      step={1}
-                    />
-                    <button type='button'>📝</button>
-                    <button type='button'>🗑️</button>
-                  </div>
+                {inputs.map((i) => (
+                  <AddFruitItem
+                    key={i.id}
+                    if={i.id}
+                    name={i.name}
+                    price={i.price}
+                  ></AddFruitItem>
                 ))}
                 <div className={s.wrapper}>
                   <button type='button' onClick={addInputFruit}>
