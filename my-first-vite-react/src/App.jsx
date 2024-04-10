@@ -8,6 +8,8 @@ import { v4 as uuidv4 } from 'uuid';
 export default function App() {
   const [fruits, setFruits] = useState(data.fruits);
 
+  // 추가, 수정, 삭제 로직
+
   const addFruit = () => {
     const newFruit = {
       id: uuidv4(),
@@ -38,6 +40,12 @@ export default function App() {
     );
   };
 
+  // 장바구니에 담긴 과일들의 총합
+  const totalPrice = fruits.reduce(
+    (acc, fruit) => acc + Number(fruit.price),
+    0
+  );
+
   return (
     <>
       <main className={s.mainContainer}>
@@ -62,13 +70,14 @@ export default function App() {
                     onUpdate={updateFruit}
                     onRegister={registerFruit}
                     onDelete={deleteFruit}
+                    fruits={fruits}
                   ></FruitItem>
                 ))}
                 <div className={s.wrapper}>
                   <button type='button' onClick={addFruit}>
                     🍏 과일 추가
                   </button>
-                  <span>{'🧺 총액 : ' + 1234}</span>
+                  <span>{'🧺 총액 : ' + totalPrice}</span>
                 </div>
               </div>
             </form>

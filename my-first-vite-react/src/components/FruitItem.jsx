@@ -2,7 +2,13 @@ import s from './FruitItems.module.css';
 
 import React from 'react';
 
-export default function FruitItem({ fruit, onUpdate, onRegister, onDelete }) {
+export default function FruitItem({
+  fruit,
+  onUpdate,
+  onRegister,
+  onDelete,
+  fruits,
+}) {
   const { id, name, price, isNew } = fruit;
 
   const handleChange = (e) => {
@@ -16,14 +22,18 @@ export default function FruitItem({ fruit, onUpdate, onRegister, onDelete }) {
       return;
     }
     if (typeof fruit.name !== 'string') {
-      alert('과일 이름은 문자여야 합니다.');
+      alert('⚠️ 과일 이름은 문자여야 합니다.');
+      return;
+    }
+    const isDuplicate = fruits.some(
+      (item) => item.name.toLowerCase() === fruit.name.toLowerCase()
+    );
+
+    if (isDuplicate) {
+      alert('⚠️ 해당 과일은 이미 장바구니에 담겨있습니다.');
       return;
     }
 
-    // if (typeof fruit.price !== 'number') {
-    //   alert('과일 가격은 숫자여야 합니다.');
-    //   return;
-    // }
     console.dir(fruit);
 
     onRegister(id, fruit);
