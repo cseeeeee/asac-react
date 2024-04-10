@@ -1,4 +1,4 @@
-import s from './FruitItem.module.css';
+import s from './FruitItems.module.css';
 
 export default function FruitItem(props) {
   console.log(
