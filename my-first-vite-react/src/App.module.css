@@ -24,17 +24,6 @@
   flex: 1 0 auto;
 }
 
-.buttonWrapper {
-  flex: 0 0 3rem;
-  display: flex;
-  gap: 0.5rem;
-}
-
-.buttonWrapper div {
-  flex: 0 0 1rem;
-  border: 0;
-}
-
 .inputWrapper {
   padding-top: 0.5rem;
   display: flex;
@@ -60,6 +49,17 @@
   width: 5rem;
   flex: 1 0 auto;
   background-color: var(--primary);
+}
+
+.buttonWrapper {
+  flex: 0 0 3rem;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.buttonWrapper div {
+  flex: 0 0 1rem;
+  border: 0;
 }
 
 .buttonWrapper {
