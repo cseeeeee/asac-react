@@ -42,11 +42,13 @@ export default function App() {
     );
   };
 
+  // 모든 과일의 가격을 합산하여 총액 계산
   const totalPrice = fruits.reduce(
     (acc, fruit) => acc + Number(fruit.price) * Number(fruit.quantity),
     0
   );
 
+  console.dir(totalPrice);
   return (
     <>
       <main className={s.mainContainer}>

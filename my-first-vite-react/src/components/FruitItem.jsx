@@ -9,7 +9,7 @@ export default function FruitItem({
   onDelete,
   fruits,
 }) {
-  const { id, name, price, isNew } = fruit;
+  const { id, name, price, quantity, isNew } = fruit;
 
   const handleChange = (e) => {
     onUpdate(id, { ...fruit, [e.target.name]: e.target.value });
@@ -24,14 +24,6 @@ export default function FruitItem({
       alert('⚠️ 과일 이름은 문자여야 합니다.');
       return;
     }
-    // const isDuplicate = fruits.some(
-    //   (item) => item.name.toLowerCase() === fruit.name.toLowerCase()
-    // );
-
-    // if (isDuplicate) {
-    //   alert('⚠️ 해당 과일은 이미 장바구니에 담겨있습니다.');
-    //   return;
-    // }
 
     console.dir(fruit);
 
@@ -58,18 +50,24 @@ export default function FruitItem({
             type='number'
             className={s.inputWrapperItem}
             name='price'
+            min={0}
+            step={1000}
             value={price}
             onChange={handleChange}
             placeholder='가격'
           />
           <input
             type='number'
-            className={s.inputWrapperItem}
+            className={s.inputWrapperInput}
+            id={`quantityInput_${id}`}
             name='quantity'
-            onChange={handleChange}
+            min={0}
+            step={1}
+            // value={quantity}
             placeholder='수량'
-            min={1}
+            onChange={handleChange}
           />
+
           <button type='button' onClick={checkRegister}>
             ✔️
           </button>
@@ -85,9 +83,10 @@ export default function FruitItem({
             type='number'
             className={s.inputWrapperInput}
             id={`quantityInput_${id}`}
-            name={`quantityInput_${id}`}
+            name='quantity'
             min={0}
             step={1}
+            // value={quantity}
             placeholder='수량'
             onChange={handleChange}
           />
