@@ -1,29 +1,26 @@
 {
   "fruits": [
     {
-      "id": "1",
-      "name": "사과",
-      "price": 5000
-    },
-    {
-      "id": "2",
-      "name": "바나나",
-      "price": 3000
-    },
-    {
-      "id": "3",
-      "name": "체리",
-      "price": 12000
-    },
-    {
-      "id": "4",
-      "name": "딸기",
+      "id": "",
+      "name": "복숭아1",
       "price": 9000
     },
     {
-      "id": "5",
-      "name": "포도",
-      "price": 4000
+      "id": "2",
+      "name": "apple",
+      "price": 7000
+    },
+    {
+      "id": "3",
+      "name": "graph",
+      "price": 6000
+    },
+    {
+      "id": "c4dc6711-2040-4659-9451-b14f6b8be312",
+      "name": "",
+      "price": 0,
+      "quantity": 0,
+      "isNew": true
     }
   ]
 }

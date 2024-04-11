@@ -1,6 +1,5 @@
 import s from './FruitItems.module.css';
-
-import React from 'react';
+import React, { useState } from 'react';
 
 export default function FruitItem({
   fruit,
@@ -10,24 +9,36 @@ export default function FruitItem({
   fruits,
 }) {
   const { id, name, price, quantity, isNew } = fruit;
+  const [localName, setLocalName] = useState(name);
+  const [localPrice, setLocalPrice] = useState(price);
+  const [localQuantity, setLocalQuantity] = useState(quantity);
 
   const handleChange = (e) => {
-    onUpdate(id, { ...fruit, [e.target.name]: e.target.value });
+    if (e.target.name === 'name') {
+      setLocalName(e.target.value);
+    } else if (e.target.name === 'price') {
+      setLocalPrice(Number(e.target.value));
+    } else if (e.target.name === 'quantity') {
+      setLocalQuantity(e.target.value);
+    }
   };
 
   const checkRegister = (e) => {
-    if (!fruit.name.trim() || fruit.price === '') {
+    if (!localName.trim() || localPrice < 0) {
       alert('추가할 과일 정보를 입력하세요!');
       return;
     }
-    if (typeof fruit.name !== 'string') {
+    if (typeof localName !== 'string') {
       alert('⚠️ 과일 이름은 문자여야 합니다.');
       return;
     }
 
-    console.dir(fruit);
-
-    onRegister(id, fruit);
+    onRegister(id, {
+      name: localName,
+      price: localPrice,
+      quantity: localQuantity,
+      isNew: false,
+    });
   };
 
   const handleModify = () => {
@@ -42,7 +53,7 @@ export default function FruitItem({
             type='text'
             className={s.inputWrapperItem}
             name='name'
-            value={name}
+            value={localName}
             onChange={handleChange}
             placeholder='상품 이름'
           />
@@ -52,7 +63,7 @@ export default function FruitItem({
             name='price'
             min={0}
             step={1000}
-            value={price}
+            value={localPrice}
             onChange={handleChange}
             placeholder='가격'
           />
@@ -63,7 +74,7 @@ export default function FruitItem({
             name='quantity'
             min={0}
             step={1}
-            // value={quantity}
+            value={localQuantity}
             placeholder='수량'
             onChange={handleChange}
           />
@@ -86,7 +97,7 @@ export default function FruitItem({
             name='quantity'
             min={0}
             step={1}
-            // value={quantity}
+            value={localQuantity}
             placeholder='수량'
             onChange={handleChange}
           />
