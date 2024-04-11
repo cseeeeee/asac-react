@@ -13,7 +13,6 @@ export default function FruitItem({
 
   const handleChange = (e) => {
     onUpdate(id, { ...fruit, [e.target.name]: e.target.value });
-    // console.log('create fruits id', id);
   };
 
   const checkRegister = (e) => {
@@ -25,14 +24,14 @@ export default function FruitItem({
       alert('⚠️ 과일 이름은 문자여야 합니다.');
       return;
     }
-    const isDuplicate = fruits.some(
-      (item) => item.name.toLowerCase() === fruit.name.toLowerCase()
-    );
+    // const isDuplicate = fruits.some(
+    //   (item) => item.name.toLowerCase() === fruit.name.toLowerCase()
+    // );
 
-    if (isDuplicate) {
-      alert('⚠️ 해당 과일은 이미 장바구니에 담겨있습니다.');
-      return;
-    }
+    // if (isDuplicate) {
+    //   alert('⚠️ 해당 과일은 이미 장바구니에 담겨있습니다.');
+    //   return;
+    // }
 
     console.dir(fruit);
 
